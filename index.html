@@ -1,108 +1,789 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Рекомендуемые настройки кодирования YouTube</title>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YT Loader — Скачать видео с YouTube</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #222;
+      --red: #ff2b2b;
+      --red2: #ff6b35;
+      --white: #f0ece4;
+      --muted: #555;
+      --success: #00e676;
+      --warning: #ffca28;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-        background: #111;
-        color: #eee;
-        font-family: Arial, sans-serif;
-        padding: 20px;
-        line-height: 1.6;
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Space Mono', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
-    h1, h2, h3 {
-        color: #fff;
+
+    /* — Background grain — */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
     }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
+
+    .glow-orb {
+      position: fixed;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,43,43,0.12) 0%, transparent 70%);
+      top: -200px; left: -200px;
+      pointer-events: none;
+      z-index: 0;
+      animation: orbFloat 8s ease-in-out infinite;
     }
-    table, th, td {
-        border: 1px solid #444;
+    .glow-orb2 {
+      position: fixed;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,107,53,0.08) 0%, transparent 70%);
+      bottom: -100px; right: -100px;
+      pointer-events: none;
+      z-index: 0;
+      animation: orbFloat 10s ease-in-out infinite reverse;
     }
-    th, td {
-        padding: 8px;
-        text-align: left;
+    @keyframes orbFloat {
+      0%,100% { transform: translate(0,0); }
+      50% { transform: translate(40px, 30px); }
     }
-    th {
-        background: #222;
+
+    /* — Layout — */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
-    tr:nth-child(even) {
-        background: #1a1a1a;
+
+    /* — Header — */
+    header {
+      padding: 48px 0 0;
+      text-align: center;
     }
-</style>
+
+    .logo-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .logo-icon {
+      width: 48px; height: 48px;
+      background: var(--red);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-icon svg { width: 26px; height: 26px; fill: white; }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 10vw, 80px);
+      letter-spacing: 4px;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--white) 0%, #888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    h1 span {
+      background: linear-gradient(135deg, var(--red) 0%, var(--red2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    /* — Card — */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    /* — Input group — */
+    .input-group {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .url-input {
+      flex: 1;
+      background: #0a0a0a;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--white);
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .url-input::placeholder { color: #333; }
+    .url-input:focus { border-color: var(--red); }
+
+    .paste-btn {
+      background: #1a1a1a;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      padding: 0 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .paste-btn:hover { border-color: var(--red); color: var(--white); }
+
+    /* — Quality selector — */
+    .quality-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .q-label {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      width: 100%;
+      margin-bottom: 4px;
+    }
+
+    .q-btn {
+      background: #0a0a0a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .q-btn:hover { border-color: #444; color: var(--white); }
+    .q-btn.active {
+      background: var(--red);
+      border-color: var(--red);
+      color: white;
+    }
+
+    /* — Format toggle — */
+    .format-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .fmt-btn {
+      flex: 1;
+      background: #0a0a0a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      padding: 10px;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .fmt-btn.active {
+      background: #1a1a1a;
+      border-color: var(--red2);
+      color: var(--red2);
+    }
+    .fmt-btn:hover:not(.active) { border-color: #333; color: var(--white); }
+
+    /* — Submit button — */
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--red) 0%, var(--red2) 100%);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 3px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .submit-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: white;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .submit-btn:hover::after { opacity: 0.08; }
+    .submit-btn:active { transform: scale(0.99); }
+    .submit-btn:disabled {
+      background: #222;
+      color: var(--muted);
+      cursor: not-allowed;
+    }
+
+    /* — Status / result — */
+    #status {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .status-inner {
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .status-inner.loading {
+      background: #111;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .status-inner.error {
+      background: rgba(255,43,43,0.07);
+      border: 1px solid rgba(255,43,43,0.3);
+      color: #ff6b6b;
+    }
+    .status-inner.success {
+      background: rgba(0,230,118,0.05);
+      border: 1px solid rgba(0,230,118,0.2);
+      color: var(--success);
+    }
+
+    .loader-dots span {
+      animation: blink 1.2s infinite;
+    }
+    .loader-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loader-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes blink {
+      0%,80%,100% { opacity: 0.2; }
+      40% { opacity: 1; }
+    }
+
+    /* — Video preview card — */
+    #preview {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .preview-card {
+      background: #0e0e0e;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .preview-thumb {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .preview-thumb-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .preview-thumb-placeholder svg { width: 48px; opacity: 0.15; fill: var(--white); }
+
+    .preview-info {
+      padding: 16px 20px;
+    }
+    .preview-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .preview-meta {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    .download-options {
+      padding: 0 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .dl-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #0a0a0a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--white);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      padding: 12px 16px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .dl-btn:hover {
+      border-color: var(--red);
+      background: rgba(255,43,43,0.05);
+    }
+    .dl-btn .dl-left { display: flex; align-items: center; gap: 10px; }
+    .dl-badge {
+      background: var(--red);
+      color: white;
+      font-size: 9px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+    .dl-badge.audio { background: #7c4dff; }
+    .dl-badge.hd { background: var(--red2); }
+
+    .dl-arrow svg { width: 14px; height: 14px; opacity: 0.4; }
+
+    /* — Info cards — */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .info-card .icon { font-size: 24px; margin-bottom: 8px; }
+    .info-card .title { font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+    .info-card .val { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--red); letter-spacing: 2px; }
+
+    /* — Instructions — */
+    .how-to {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+    .how-to h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+    .steps { display: flex; flex-direction: column; gap: 14px; }
+    .step { display: flex; gap: 16px; align-items: flex-start; }
+    .step-num {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+    }
+    .step-text { font-size: 12px; color: #aaa; line-height: 1.7; padding-top: 4px; }
+    .step-text strong { color: var(--white); }
+
+    /* — Notice — */
+    .notice {
+      background: rgba(255,202,40,0.05);
+      border: 1px solid rgba(255,202,40,0.2);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 11px;
+      color: #999;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .notice strong { color: var(--warning); }
+
+    /* — Footer — */
+    footer {
+      text-align: center;
+      padding: 32px 0 48px;
+      font-size: 10px;
+      color: #333;
+      letter-spacing: 2px;
+    }
+    footer a { color: #444; text-decoration: none; }
+
+    @media (max-width: 500px) {
+      .input-group { flex-direction: column; }
+      .paste-btn { padding: 12px; }
+    }
+  </style>
 </head>
 <body>
 
-<h1>Рекомендуемые настройки кодирования для YouTube</h1>
+<div class="glow-orb"></div>
+<div class="glow-orb2"></div>
 
-<p>Ниже перечислены рекомендованные параметры для видео, которые вы загружаете на YouTube: :contentReference[oaicite:0]{index=0}</p>
+<div class="container">
 
-<h2>📦 Контейнер</h2>
-<ul>
-    <li>MP4</li>
-    <li>Не используйте монтажные листы (иначе видео может обработаться неверно)</li>
-    <li>Помещайте элементы <code>moov atom</code> в начало файла для ускоренного запуска</li>
-</ul>
+  <!-- Header -->
+  <header>
+    <div class="logo-line">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+      </div>
+    </div>
+    <h1>YT<span>LOADER</span></h1>
+    <p class="tagline">Скачать видео с YouTube бесплатно</p>
+  </header>
 
-<h2>🔊 Аудио</h2>
-<ul>
-    <li>Кодек: AAC-LC, Opus или Eclipsa Audio</li>
-    <li>Каналы: стерео, стерео + 5.1 или стерео + Eclipsa Audio</li>
-    <li>Частота дискретизации: 48 кГц</li>
-</ul>
+  <!-- Main card -->
+  <div class="card">
+    <div class="input-group">
+      <input
+        id="urlInput"
+        class="url-input"
+        type="text"
+        placeholder="https://www.youtube.com/watch?v=..."
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button class="paste-btn" onclick="pasteUrl()">📋 Вставить</button>
+    </div>
 
-<h2>🎥 Видео</h2>
-<ul>
-    <li>Кодек: H.264</li>
-    <li>Прогрессивная развертка (не чересстрочная)</li>
-    <li>Профиль: High</li>
-    <li>2 последовательных B-кадра</li>
-    <li>Закрытая GOP (GOP = половине частоты кадров)</li>
-    <li>CABAC</li>
-    <li>Переменный битрейт (без жесткого верхнего ограничения)</li>
-    <li>Цветовая субдискретизация: 4:2:0</li>
-</ul>
+    <div class="quality-row">
+      <span class="q-label">Качество видео</span>
+      <button class="q-btn active" data-q="2160" onclick="setQuality(this)">4K</button>
+      <button class="q-btn" data-q="1440" onclick="setQuality(this)">1440p</button>
+      <button class="q-btn" data-q="1080" onclick="setQuality(this)">1080p</button>
+      <button class="q-btn" data-q="720" onclick="setQuality(this)">720p</button>
+      <button class="q-btn" data-q="480" onclick="setQuality(this)">480p</button>
+      <button class="q-btn" data-q="360" onclick="setQuality(this)">360p</button>
+    </div>
 
-<h2>🎞 Частота кадров</h2>
-<p>Видео должно сохранять исходную частоту кадров (например: 24, 25, 30, 48, 50, 60). Если исходный материал чересстрочный — предварительно преобразуйте в прогрессивный формат. :contentReference[oaicite:1]{index=1}</p>
+    <div class="format-row">
+      <button class="fmt-btn active" data-fmt="mp4" onclick="setFormat(this)">🎬 MP4 (видео)</button>
+      <button class="fmt-btn" data-fmt="mp3" onclick="setFormat(this)">🎵 MP3 (аудио)</button>
+      <button class="fmt-btn" data-fmt="webm" onclick="setFormat(this)">📦 WEBM</button>
+    </div>
 
-<h2>📊 Рекомендуемый битрейт</h2>
+    <button class="submit-btn" id="submitBtn" onclick="startDownload()">
+      ▶ ПОЛУЧИТЬ ССЫЛКУ
+    </button>
 
-<h3>Битрейты видео (SDR)</h3>
-<table>
-    <tr><th>Разрешение</th><th>Стандартная FPS</th><th>Высокая FPS</th></tr>
-    <tr><td>8K</td><td>80–160 Мбит/с</td><td>120–240 Мбит/с</td></tr>
-    <tr><td>2160p (4K)</td><td>35–45 Мбит/с</td><td>53–68 Мбит/с</td></tr>
-    <tr><td>1440p (2K)</td><td>16 Мбит/с</td><td>24 Мбит/с</td></tr>
-    <tr><td>1080p</td><td>8 Мбит/с</td><td>12 Мбит/с</td></tr>
-    <tr><td>720p</td><td>5 Мбит/с</td><td>7.5 Мбит/с</td></tr>
-    <tr><td>480p</td><td>2.5 Мбит/с</td><td>4 Мбит/с</td></tr>
-    <tr><td>360p</td><td>1 Мбит/с</td><td>1.5 Мбит/с</td></tr>
-</table>
+    <div id="status">
+      <div class="status-inner loading" id="statusInner">
+        <span class="loader-dots">Загрузка<span>.</span><span>.</span><span>.</span></span>
+      </div>
+    </div>
+  </div>
 
-<h3>Битрейты видео (HDR)</h3>
-<table>
-    <tr><th>Разрешение</th><th>Стандартная FPS</th><th>Высокая FPS</th></tr>
-    <tr><td>8K</td><td>100–200 Мбит/с</td><td>150–300 Мбит/с</td></tr>
-    <tr><td>2160p (4K)</td><td>44–56 Мбит/с</td><td>66–85 Мбит/с</td></tr>
-    <tr><td>1440p (2K)</td><td>20 Мбит/с</td><td>30 Мбит/с</td></tr>
-    <tr><td>1080p</td><td>10 Мбит/с</td><td>15 Мбит/с</td></tr>
-    <tr><td>720p</td><td>6.5 Мбит/с</td><td>9.5 Мбит/с</td></tr>
-</table>
+  <!-- Preview / Download buttons -->
+  <div id="preview">
+    <div class="preview-card">
+      <div id="thumbContainer">
+        <div class="preview-thumb-placeholder">
+          <svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+        </div>
+      </div>
+      <div class="preview-info">
+        <div class="preview-title" id="videoTitle">—</div>
+        <div class="preview-meta" id="videoMeta">—</div>
+      </div>
+      <div class="download-options" id="downloadOptions"></div>
+    </div>
+  </div>
 
-<h2>🎧 Рекомендуемые аудиобитрейты</h2>
-<table>
-    <tr><th>Тип аудио</th><th>Битрейт</th></tr>
-    <tr><td>Mono</td><td>128 кбит/с</td></tr>
-    <tr><td>Stereo</td><td>384 кбит/с</td></tr>
-    <tr><td>5.1</td><td>512 кбит/с</td></tr>
-</table>
+  <!-- Stats -->
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="icon">⚡</div>
+      <div class="title">Скорость</div>
+      <div class="val">БЫСТРО</div>
+    </div>
+    <div class="info-card">
+      <div class="icon">🔒</div>
+      <div class="title">Без регистрации</div>
+      <div class="val">100%</div>
+    </div>
+    <div class="info-card">
+      <div class="icon">🎯</div>
+      <div class="title">Качество</div>
+      <div class="val">ДО 4K</div>
+    </div>
+  </div>
 
-<h2>📏 Разрешение и соотношение сторон</h2>
-<p>Стандартное соотношение для YouTube – <strong>16:9</strong>. При других соотношениях (вертикальные или квадратные видео) YouTube адаптирует видео под проигрыватель. :contentReference[oaicite:2]{index=2}</p>
+  <!-- How to -->
+  <div class="how-to">
+    <h2>КАК СКАЧАТЬ</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">Откройте YouTube и найдите нужное видео. <strong>Скопируйте ссылку</strong> из адресной строки браузера.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Вставьте ссылку</strong> в поле выше. Выберите нужное качество (1080p, 720p, 4K) и формат (MP4 или MP3).</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">Нажмите <strong>«ПОЛУЧИТЬ ССЫЛКУ»</strong>. Дождитесь обработки и нажмите кнопку скачивания.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notice -->
+  <div class="notice">
+    <strong>⚠ Обратите внимание:</strong> Сервис использует открытый API cobalt.tools для получения ссылок на скачивание.
+    Скачивайте только контент, который вы имеете право использовать. Не скачивайте материалы, защищённые авторским правом, без разрешения правообладателя.
+    Данный инструмент предназначен для личного использования (например, для офлайн-просмотра видео, на которое у вас есть права).
+  </div>
+
+  <footer>
+    <p>YTLOADER &mdash; РАБОТАЕТ НА <a href="https://cobalt.tools" target="_blank">COBALT.TOOLS API</a></p>
+    <br>
+    <p>DEPLOY ON <a href="https://pages.github.com" target="_blank">GITHUB PAGES</a></p>
+  </footer>
+
+</div>
+
+<script>
+  let selectedQuality = '2160';
+  let selectedFormat = 'mp4';
+
+  function setQuality(btn) {
+    document.querySelectorAll('.q-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedQuality = btn.dataset.q;
+    if (selectedFormat === 'mp3') return; // качество неважно для mp3
+  }
+
+  function setFormat(btn) {
+    document.querySelectorAll('.fmt-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedFormat = btn.dataset.fmt;
+    // Скрыть качество для аудио
+    const qRow = document.querySelector('.quality-row');
+    qRow.style.opacity = selectedFormat === 'mp3' ? '0.3' : '1';
+    qRow.style.pointerEvents = selectedFormat === 'mp3' ? 'none' : 'auto';
+  }
+
+  async function pasteUrl() {
+    try {
+      const text = await navigator.clipboard.readText();
+      document.getElementById('urlInput').value = text;
+    } catch {
+      document.getElementById('urlInput').focus();
+    }
+  }
+
+  function extractVideoId(url) {
+    try {
+      const u = new URL(url);
+      if (u.hostname.includes('youtu.be')) return u.pathname.slice(1);
+      if (u.hostname.includes('youtube.com')) {
+        if (u.pathname === '/watch') return u.searchParams.get('v');
+        const m = u.pathname.match(/\/(shorts|embed|v)\/([^/?]+)/);
+        if (m) return m[2];
+      }
+    } catch {}
+    // fallback regex
+    const m = url.match(/(?:v=|youtu\.be\/|\/embed\/|\/shorts\/)([A-Za-z0-9_-]{11})/);
+    return m ? m[1] : null;
+  }
+
+  function showStatus(type, html) {
+    const el = document.getElementById('status');
+    const inner = document.getElementById('statusInner');
+    el.style.display = 'block';
+    inner.className = 'status-inner ' + type;
+    inner.innerHTML = html;
+  }
+
+  function hideStatus() {
+    document.getElementById('status').style.display = 'none';
+  }
+
+  async function startDownload() {
+    const url = document.getElementById('urlInput').value.trim();
+    if (!url) {
+      showStatus('error', '⛔ Введите ссылку на видео YouTube');
+      return;
+    }
+
+    const videoId = extractVideoId(url);
+    if (!videoId) {
+      showStatus('error', '⛔ Не удалось распознать ссылку YouTube.<br>Пример: https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+      return;
+    }
+
+    // Show thumbnail immediately
+    showVideoInfo(videoId, url);
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    showStatus('loading', '<span class="loader-dots">Получение ссылки<span>.</span><span>.</span><span>.</span></span>');
+
+    try {
+      await fetchCobalt(url, videoId);
+    } catch (e) {
+      showStatus('error', '⛔ Ошибка: ' + e.message + '<br><small>Попробуйте другое видео или проверьте ссылку.</small>');
+    }
+
+    btn.disabled = false;
+  }
+
+  function showVideoInfo(videoId, url) {
+    document.getElementById('preview').style.display = 'block';
+    document.getElementById('videoTitle').textContent = 'ID: ' + videoId;
+    document.getElementById('videoMeta').textContent = url;
+
+    // Load thumbnail
+    const thumbContainer = document.getElementById('thumbContainer');
+    const img = document.createElement('img');
+    img.className = 'preview-thumb';
+    img.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+    img.onerror = function() {
+      this.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    };
+    thumbContainer.innerHTML = '';
+    thumbContainer.appendChild(img);
+  }
+
+  async function fetchCobalt(url, videoId) {
+    // cobalt.tools API — open-source, no auth needed
+    const COBALT_API = 'https://api.cobalt.tools/';
+
+    const videoCodec = selectedFormat === 'webm' ? 'vp9' : 'h264';
+    const audioFormat = selectedFormat === 'mp3' ? 'mp3' : 'best';
+
+    const body = {
+      url: url,
+      videoQuality: selectedQuality,
+      audioFormat: audioFormat,
+      downloadMode: selectedFormat === 'mp3' ? 'audio' : 'auto',
+      filenameStyle: 'pretty',
+    };
+
+    const resp = await fetch(COBALT_API, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!resp.ok) {
+      throw new Error(`API вернул ${resp.status}. Попробуйте позже.`);
+    }
+
+    const data = await resp.json();
+    handleCobaltResponse(data, videoId);
+  }
+
+  function handleCobaltResponse(data, videoId) {
+    const opts = document.getElementById('downloadOptions');
+    opts.innerHTML = '';
+
+    if (data.status === 'error') {
+      showStatus('error', '⛔ ' + (data.error?.code || 'Неизвестная ошибка') + '<br><small>Некоторые видео могут быть недоступны из-за ограничений.</small>');
+      return;
+    }
+
+    if (data.status === 'redirect' || data.status === 'stream' || data.status === 'tunnel') {
+      // Single download link
+      const link = data.url;
+      const isAudio = selectedFormat === 'mp3';
+      addDownloadButton(opts, link, isAudio ? 'MP3 Аудио' : `${selectedFormat.toUpperCase()} ${selectedQuality}p`, isAudio ? 'audio' : 'hd');
+      showStatus('success', '✅ Ссылка получена! Нажмите кнопку ниже для скачивания.');
+      return;
+    }
+
+    if (data.status === 'picker') {
+      // Multiple quality options
+      showStatus('success', `✅ Найдено ${data.picker.length} вариантов. Выберите качество:`);
+      data.picker.forEach((item, i) => {
+        const label = item.quality ? `${item.type || 'video'} ${item.quality}` : `Вариант ${i + 1}`;
+        addDownloadButton(opts, item.url, label, 'hd');
+      });
+      return;
+    }
+
+    // Fallback — construct yt-dlp style download
+    showStatus('error', '⚠ Неожиданный ответ от API. Попробуйте ещё раз.');
+  }
+
+  function addDownloadButton(container, url, label, badgeClass) {
+    const a = document.createElement('a');
+    a.className = 'dl-btn';
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.innerHTML = `
+      <div class="dl-left">
+        <span class="dl-badge ${badgeClass}">${label.includes('MP3') ? 'AUDIO' : 'VIDEO'}</span>
+        <span>${label}</span>
+      </div>
+      <div class="dl-arrow">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      </div>
+    `;
+    container.appendChild(a);
+  }
+
+  // Enter key
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('urlInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') startDownload();
+    });
+  });
+</script>
 
 </body>
 </html>
