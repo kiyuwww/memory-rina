@@ -154,13 +154,14 @@
   .photo-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
+    gap: 8px; /* Немного увеличим gap */
   }
 
   .photo-cell {
     aspect-ratio: 1;
     background: #eee;
     overflow: hidden;
+    cursor: pointer; /* Добавим курсор pointer для указания кликабельности */
   }
 
   .photo-cell img {
@@ -168,11 +169,36 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease; /* Добавим filter в transition */
+    filter: grayscale(100%); /* Изначально серые */
   }
 
   .photo-cell img:hover {
     transform: scale(1.05);
+    filter: grayscale(0%); /* Исходный цвет при наведении */
+  }
+
+  /* Стили для модального окна */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: auto;
+  }
+
+  .modal-content {
+    display: block;
+    margin: auto;
+    max-width: 80%;
+    max-height: 80%;
+    transform: translateY(-50%);
+    top: 50%;
+    position: relative;
   }
 
   #music {
@@ -354,6 +380,10 @@
   </div>
 </section>
 
+<div id="myModal" class="modal">
+  <img class="modal-content" id="img01">
+</div>
+
 <section id="music">
   <h2 class="music-title">Музыка</h2>
   <div class="music-layout">
@@ -435,6 +465,25 @@
 
   goTo(0);
   setInterval(() => goTo((current + 1) % quotes.length), 7000);
+
+  // Скрипт для модального окна
+  const modal = document.getElementById("myModal");
+  const modalImg = document.getElementById("img01");
+  const photoGrid = document.querySelector(".photo-grid");
+
+  photoGrid.addEventListener("click", function(e) {
+    if (e.target.tagName === "IMG") {
+      modal.style.display = "block";
+      modalImg.src = e.target.src;
+    }
+  });
+
+  // Закрытие модального окна при клике вне изображения
+  modal.addEventListener("click", function(e) {
+    if (e.target !== modalImg) {
+      modal.style.display = "none";
+    }
+  });
 </script>
 
 </body>
