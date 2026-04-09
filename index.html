@@ -1,724 +1,478 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SnapTube — Скачать видео с YouTube</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #f5f2eb;
-      --ink: #111010;
-      --surface: #ffffff;
-      --accent: #e63329;
-      --accent2: #f5a623;
-      --muted: #888;
-      --border: #ddd8ce;
-      --tag-bg: #111010;
-      --tag-fg: #f5f2eb;
-    }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<!doctype html>
+<html lang="ru-RU">
+    <head><script src="//archive.org/includes/athena.js" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app249.us.archive.org';v.server_ms=249;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/bundle-playback.js?v=2N_sDSC0" charset="utf-8"></script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/wombat.js?v=txqj7nKC" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden","showSwfDownload":true};</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://www.rinapalenkova.ru:80/","20160521095833","https://web.archive.org/","web","https://web-static.archive.org/_static/",
+	      "1463824713");
+</script>
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3" />
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
 
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'IBM Plex Mono', monospace;
-      min-height: 100vh;
-    }
+        <meta charset="utf-8">
+        <title>Сайт памяти Рины Паленковой</title>
+        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+        <meta name="title" content="Онлайн-мемориал памяти Рины Паленковой">
+        <meta name="description" content="Онлайн-мемориал, посвященный памяти Ренаты Камболиной, в сети более известной как Рина Паленкова. Данный сайт создан с целью увековечить память о Ренате в интернет-пространстве. Сайт регулярно дополняется и обновляется свежими материалами.">
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:title" content="Онлайн-мемориал памяти Рины Паленковой">
+        <meta name="twitter:description" content="Онлайн-мемориал, посвященный памяти Ренаты Камболиной, в сети более известной как Рина Паленкова. Данный сайт создан с целью увековечить память о Ренате в интернет пространстве, и является интерактивным онлайн-мемориалом."/>
+        <meta name="twitter:image:src" content="http://rinapalenkova.ru/i/social-preview.jpg"/>
+        <meta name="twitter:domain" content="rinapalenkova.ru"/>
+        <meta property="og:locale" content="ru_RU"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Онлайн-мемориал памяти Рины Паленковой"/>
+        <meta property="og:description" content="Онлайн-мемориал, посвященный памяти Ренаты Камболиной, в сети более известной как Рина Паленкова. Данный сайт создан с целью увековечить память о Ренате в интернет-пространстве. Сайт регулярно дополняется и обновляется свежими материалами."/>
+        <meta property="og:url" content="https://web.archive.org/web/20160521095833/http://rinapalenkova.ru/"/>
+        <link rel="stylesheet" href="https://web.archive.org/web/20160521095833cs_/https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="icon" type="image/png" href="https://web.archive.org/web/20160521095833im_/http://www.heritagetravelonline.com/images/icon-heart.png"/>
+        <link rel="stylesheet" href="/web/20160521095833cs_/http://www.rinapalenkova.ru/css/jquery-ui.min.css">
+        <link rel="stylesheet" href="/web/20160521095833cs_/http://www.rinapalenkova.ru/css/jquery.fancybox.css"/>
+        <link rel="stylesheet" href="/web/20160521095833cs_/http://www.rinapalenkova.ru/css/jquery.fancybox-thumbs.css"/>
+        <link rel="stylesheet" href="/web/20160521095833cs_/http://www.rinapalenkova.ru/css/swiper.min.css">
+        <link rel="stylesheet" href="/web/20160521095833cs_/http://www.rinapalenkova.ru/css/style.css">
+        <script src="//web.archive.org/web/20160521095833js_/http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+        <script src="/web/20160521095833js_/http://www.rinapalenkova.ru/js/jquery.min.js"></script>
+        <script src="/web/20160521095833js_/http://www.rinapalenkova.ru/js/jquery.fancybox.js"></script>
+        <script src="/web/20160521095833js_/http://www.rinapalenkova.ru/js/jquery.fancybox-thumbs.js"></script>
+        <script src="/web/20160521095833js_/http://www.rinapalenkova.ru/js/swiper.min.js"></script>
+        <script src="/web/20160521095833js_/http://www.rinapalenkova.ru/js/common.js"></script>
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+        <![endif]-->
+    </head>
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: radial-gradient(circle, #ccc8bf 1px, transparent 1px);
-      background-size: 28px 28px;
-      opacity: 0.35;
-      pointer-events: none;
-      z-index: 0;
-    }
 
-    .wrap {
-      position: relative;
-      z-index: 1;
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 24px 64px;
-    }
-
-    /* HEADER */
-    header {
-      padding: 52px 0 44px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--tag-bg);
-      color: var(--tag-fg);
-      font-size: 9px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      border-radius: 2px;
-      margin-bottom: 14px;
-    }
-    .eyebrow .dot {
-      width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 1.8s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%,100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
-    }
-
-    h1 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: clamp(52px, 11vw, 90px);
-      line-height: 0.92;
-      letter-spacing: -2px;
-    }
-    h1 .line2 {
-      color: var(--accent);
-      display: block;
-    }
-    h1 .outline {
-      -webkit-text-stroke: 2px var(--ink);
-      color: transparent;
-    }
-
-    .header-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 8px;
-      padding-top: 8px;
-    }
-    .badge-pill {
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 100px;
-      font-size: 10px;
-      padding: 6px 14px;
-      color: var(--muted);
-      letter-spacing: 1px;
-    }
-    .badge-pill strong { color: var(--ink); }
-
-    /* API NOTICE */
-    .api-notice {
-      background: #fff8ec;
-      border: 1.5px solid #f5a62366;
-      border-radius: 12px;
-      padding: 16px 20px;
-      font-size: 11px;
-      line-height: 1.9;
-      margin-bottom: 20px;
-      color: #555;
-    }
-    .api-notice strong { color: var(--ink); }
-    .api-notice a { color: var(--accent); }
-    .api-notice code {
-      background: #f0ece2;
-      border-radius: 4px;
-      padding: 1px 6px;
-      font-family: 'IBM Plex Mono', monospace;
-    }
-
-    /* MAIN PANEL */
-    .panel {
-      background: var(--surface);
-      border: 2px solid var(--ink);
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 20px;
-      box-shadow: 6px 6px 0 var(--ink);
-    }
-
-    .panel-header {
-      background: var(--ink);
-      color: var(--tag-fg);
-      font-family: 'Syne', sans-serif;
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      padding: 10px 20px;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    .panel-header .circle { width: 8px; height: 8px; border-radius: 50%; }
-    .panel-header .c1 { background: var(--accent); }
-    .panel-header .c2 { background: var(--accent2); }
-    .panel-header .c3 { background: #4caf50; }
-
-    .panel-body { padding: 28px; }
-
-    .field-label {
-      font-size: 9px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .key-row {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-    .key-input, .url-input {
-      flex: 1;
-      background: var(--bg);
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 12px;
-      color: var(--ink);
-      padding: 12px 16px;
-      outline: none;
-      transition: border-color 0.15s;
-    }
-    .key-input:focus { border-color: var(--ink); }
-    .url-input { font-size: 13px; }
-    .url-input:focus { border-color: var(--accent); }
-    .key-input::placeholder,
-    .url-input::placeholder { color: #bbb; letter-spacing: 0; }
-
-    .save-key-btn, .paste-btn {
-      background: var(--ink);
-      color: var(--bg);
-      border: none;
-      border-radius: 8px;
-      font-family: 'Syne', sans-serif;
-      font-size: 11px;
-      letter-spacing: 1px;
-      padding: 0 18px;
-      cursor: pointer;
-      transition: opacity 0.15s;
-      white-space: nowrap;
-    }
-    .save-key-btn:hover, .paste-btn:hover { opacity: 0.75; }
-
-    .url-row {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-    .paste-btn {
-      background: var(--bg);
-      color: var(--muted);
-      border: 1.5px solid var(--border);
-    }
-    .paste-btn:hover { border-color: var(--ink); color: var(--ink); opacity: 1; }
-
-    .mode-tabs {
-      display: flex;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-    .mode-tab {
-      flex: 1;
-      background: none;
-      border: none;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      padding: 11px 8px;
-      cursor: pointer;
-      color: var(--muted);
-      letter-spacing: 1px;
-      transition: all 0.15s;
-      text-align: center;
-    }
-    .mode-tab + .mode-tab { border-left: 1.5px solid var(--border); }
-    .mode-tab.active { background: var(--ink); color: var(--bg); }
-
-    .go-btn {
-      width: 100%;
-      background: var(--accent);
-      color: white;
-      border: 2px solid var(--ink);
-      border-radius: 10px;
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 18px;
-      letter-spacing: 4px;
-      padding: 16px;
-      cursor: pointer;
-      transition: transform 0.1s, box-shadow 0.1s;
-      box-shadow: 4px 4px 0 var(--ink);
-    }
-    .go-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink); }
-    .go-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--ink); }
-    .go-btn:disabled {
-      background: #ddd; color: #aaa; border-color: #ccc;
-      box-shadow: 3px 3px 0 #ccc; cursor: not-allowed; transform: none;
-    }
-
-    #status { display: none; margin-top: 16px; }
-    .status-box {
-      border-radius: 8px; padding: 14px 18px;
-      font-size: 12px; line-height: 1.6; border: 1.5px solid;
-    }
-    .status-box.loading { background: #f9f9f9; border-color: var(--border); color: #777; }
-    .status-box.error { background: #fff0f0; border-color: #f5c6c6; color: #c0392b; }
-    .status-box.success { background: #f0fff4; border-color: #a8e6c1; color: #1a7a40; }
-
-    .spin { display: inline-block; animation: spin 0.8s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    #result { display: none; }
-
-    .result-card {
-      background: var(--surface);
-      border: 2px solid var(--ink);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 6px 6px 0 var(--ink);
-      margin-bottom: 20px;
-    }
-
-    .result-thumb { width: 100%; height: 220px; object-fit: cover; display: block; }
-    .thumb-placeholder {
-      width: 100%; height: 220px;
-      background: linear-gradient(135deg, #f0ece2, #e5e0d5);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .thumb-placeholder svg { width: 56px; opacity: 0.15; }
-
-    .result-thumb-wrap { position: relative; }
-    .play-overlay {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      width: 56px; height: 56px;
-      background: rgba(0,0,0,0.6); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      pointer-events: none;
-    }
-    .play-overlay svg { width: 22px; fill: white; margin-left: 3px; }
-
-    .result-info {
-      padding: 20px 24px 14px;
-      border-bottom: 1.5px solid var(--border);
-    }
-    .result-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; line-height: 1.4; margin-bottom: 6px; }
-    .result-meta { font-size: 10px; color: var(--muted); letter-spacing: 1px; }
-
-    .dl-list { padding: 16px 24px 20px; display: flex; flex-direction: column; gap: 8px; }
-    .dl-section-title {
-      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 4px; margin-top: 8px;
-    }
-    .dl-section-title:first-child { margin-top: 0; }
-
-    .dl-item {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 16px;
-      background: var(--bg);
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      text-decoration: none;
-      color: var(--ink);
-      font-size: 11px;
-      transition: all 0.15s;
-      cursor: pointer;
-    }
-    .dl-item:hover { border-color: var(--ink); background: var(--ink); color: var(--bg); }
-    .dl-left { display: flex; align-items: center; gap: 10px; }
-    .dl-chip {
-      font-size: 9px; font-weight: 600; letter-spacing: 1px;
-      padding: 3px 8px; border-radius: 3px; border: 1.5px solid currentColor; white-space: nowrap;
-    }
-
-    .info-strip {
-      display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;
-    }
-    .info-tile {
-      flex: 1; min-width: 140px;
-      background: var(--surface);
-      border: 2px solid var(--ink);
-      border-radius: 12px; padding: 16px 20px;
-      box-shadow: 3px 3px 0 var(--ink);
-    }
-    .info-tile .t-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-    .info-tile .t-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; color: var(--accent); }
-
-    .steps-panel {
-      background: var(--surface);
-      border: 2px solid var(--ink);
-      border-radius: 16px;
-      padding: 28px; margin-bottom: 20px;
-      box-shadow: 4px 4px 0 var(--ink);
-    }
-    .steps-panel h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: 1px; margin-bottom: 20px; }
-    .step-row { display: flex; gap: 16px; margin-bottom: 16px; align-items: flex-start; }
-    .step-num {
-      flex-shrink: 0; width: 30px; height: 30px;
-      background: var(--ink); color: var(--bg); border-radius: 50%;
-      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 13px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .step-body { font-size: 12px; line-height: 1.7; color: #555; padding-top: 4px; }
-    .step-body strong { color: var(--ink); }
-
-    footer { text-align: center; font-size: 10px; color: var(--muted); letter-spacing: 2px; padding-top: 16px; }
-    footer a { color: var(--muted); }
-
-    @media(max-width:520px){
-      .url-row, .key-row { flex-direction: column; }
-    }
-  </style>
-</head>
-<body>
-<div class="wrap">
-
-  <header>
-    <div class="header-left">
-      <div class="eyebrow"><span class="dot"></span> Бесплатно · Без регистрации</div>
-      <h1>SNAP<span class="line2"><span class="outline">TUBE</span></span></h1>
-    </div>
-    <div class="header-right">
-      <div class="badge-pill"><strong>API:</strong> RapidAPI / yt-api</div>
-      <div class="badge-pill"><strong>MP4</strong> · <strong>MP3</strong> · <strong>WEBM</strong></div>
-      <div class="badge-pill">До <strong>4K</strong> качества</div>
-    </div>
-  </header>
-
-  <div class="api-notice">
-    <strong>🔑 Нужен бесплатный API-ключ (1 минута):</strong><br>
-    1. Зарегистрируйтесь на <a href="https://rapidapi.com" target="_blank">rapidapi.com</a> (бесплатно, нужна только почта)<br>
-    2. Откройте <a href="https://rapidapi.com/ytjar/api/yt-api" target="_blank"><strong>yt-api</strong> на RapidAPI</a> → нажмите <strong>Subscribe to Test</strong> → выберите бесплатный план (<code>Basic</code>)<br>
-    3. Скопируйте значение <code>X-RapidAPI-Key</code> из раздела <strong>Header Parameters</strong> и вставьте ниже
+    <body><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script>__wm.rw(0);</script>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;" toolbar-mode="auto">
+<div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+<div id="donato" style="position:relative;width:100%;height:0;">
+  <div id="donato-base">
+    <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;platform=wb&amp;referer=https%3A//web.archive.org/web/20160521095833/http%3A//www.rinapalenkova.ru/"
+	    scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
   </div>
-
-  <div class="panel">
-    <div class="panel-header">
-      <span class="circle c1"></span>
-      <span class="circle c2"></span>
-      <span class="circle c3"></span>
-      &nbsp; Загрузчик видео — yt-api
+</div><div id="wm-ipp-inside">
+  <div id="wm-toolbar" style="position:relative;display:flex;flex-flow:row nowrap;justify-content:space-between;" nav="async">
+    <div id="wm-logo" style="/*width:110px;*/padding-top:12px;">
+      <a href="/web/" title="Wayback Machine home page"><img src="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-200.png" srcset="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-100.png, https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-150.png 1.5x, https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-200.png 2x" alt="Wayback Machine" style="width:100px" border="0" /></a>
     </div>
-    <div class="panel-body">
-
-      <div class="field-label">Ваш RapidAPI ключ</div>
-      <div class="key-row">
-        <input id="apiKey" class="key-input" type="password" placeholder="Вставьте X-RapidAPI-Key здесь..." autocomplete="off"/>
-        <button class="save-key-btn" onclick="saveKey()">Сохранить</button>
-      </div>
-
-      <div class="field-label">Ссылка на видео YouTube</div>
-      <div class="url-row">
-        <input id="urlInput" class="url-input" type="text" placeholder="https://www.youtube.com/watch?v=..." spellcheck="false"/>
-        <button class="paste-btn" onclick="pasteUrl()">📋 Вставить</button>
-      </div>
-
-      <div class="mode-tabs">
-        <button class="mode-tab active" data-mode="video" onclick="setMode(this)">🎬 Видео (MP4)</button>
-        <button class="mode-tab" data-mode="audio" onclick="setMode(this)">🎵 Аудио (MP3)</button>
-        <button class="mode-tab" data-mode="info" onclick="setMode(this)">📋 Информация</button>
-      </div>
-
-      <button class="go-btn" id="goBtn" onclick="run()">▶ СКАЧАТЬ</button>
-
-      <div id="status">
-        <div class="status-box loading" id="statusBox">...</div>
-      </div>
-    </div>
-  </div>
-
-  <div id="result">
-    <div class="result-card">
-      <div class="result-thumb-wrap" id="thumbWrap">
-        <div class="thumb-placeholder">
-          <svg viewBox="0 0 24 24" fill="#111"><path d="M10 15l5.19-3L10 9v6M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+    <div class="c" style="display:flex;flex-flow:column nowrap;justify-content:space-between;flex:1;">
+      <form class="u" style="display:flex;flex-direction:row;flex-wrap:nowrap;" target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="http://www.rinapalenkova.ru/" onfocus="this.focus();this.select();" style="flex:1;"/><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20160521095833" /><input type="submit" value="Go" />
+      </form>
+      <div style="display:flex;flex-flow:row nowrap;align-items:flex-end;">
+                <div class="s" id="wm-nav-captures" style="flex:1;">
+                    <a class="t" href="/web/20160521095833*/http://www.rinapalenkova.ru/" title="See a list of every capture for this URL">50 captures</a>
+          <div class="r" title="Timespan for captures of this URL">31 Jan 2016 - 17 Feb 2026</div>
+          </div>
+        <div class="k">
+          <a href="" id="wm-graph-anchor">
+            <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+              <canvas id="wm-sparkline-canvas" width="775" height="27" border="0"></canvas>
+            </div>
+          </a>
         </div>
       </div>
-      <div class="result-info">
-        <div class="result-title" id="rTitle">—</div>
-        <div class="result-meta" id="rMeta">—</div>
+    </div>
+    <div class="n">
+      <table>
+        <tbody>
+          <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+          <tr class="m">
+            <td class="b" nowrap="nowrap">Apr</td>
+            <td class="c" id="displayMonthEl" title="You are here: 09:58:33 May 21, 2016">MAY</td>
+            <td class="f" nowrap="nowrap">Jun</td>
+          </tr>
+          <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+          <tr class="d">
+            <td class="b" nowrap="nowrap"><span class="ta"></span></td>
+            <td class="c" id="displayDayEl" style="width:34px;font-size:22px;white-space:nowrap;" title="You are here: 09:58:33 May 21, 2016">21</td>
+            <td class="f" nowrap="nowrap"><span class="ta"></span></td>
+          </tr>
+          <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+          <tr class="y">
+            <td class="b" nowrap="nowrap">2015</td>
+            <td class="c" id="displayYearEl" title="You are here: 09:58:33 May 21, 2016">2016</td>
+            <td class="f" nowrap="nowrap">2017</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="r" style="display:flex;flex-flow:column nowrap;align-items:flex-end;justify-content:space-between;">
+      <div id="wm-btns" style="text-align:right;height:23px;">
+                <span class="xxs">
+          <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="#" title="Share via My Web Archive" >
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php" title="Sign In" id="wm-sign-in">
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+        </span>
+                <a class="xxs" href="https://help.archive.org/help/category/the-wayback-machine/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+        <a id="wm-tb-close" href="#close" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
       </div>
-      <div class="dl-list" id="dlList"></div>
-    </div>
-  </div>
-
-  <div class="info-strip">
-    <div class="info-tile"><div class="t-label">Формат</div><div class="t-val">MP4/MP3</div></div>
-    <div class="info-tile"><div class="t-label">Качество</div><div class="t-val">4K</div></div>
-    <div class="info-tile"><div class="t-label">Сервер</div><div class="t-val">NONE</div></div>
-    <div class="info-tile"><div class="t-label">Цена</div><div class="t-val">FREE</div></div>
-  </div>
-
-  <div class="steps-panel">
-    <h2>КАК ПОЛЬЗОВАТЬСЯ</h2>
-    <div class="step-row">
-      <div class="step-num">1</div>
-      <div class="step-body">Получите <strong>бесплатный API-ключ</strong> на <strong>rapidapi.com</strong> — нужна только почта. Подпишитесь на <strong>yt-api</strong> (бесплатный план: 500 запросов/месяц).</div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">2</div>
-      <div class="step-body">Вставьте ключ в поле выше, нажмите <strong>Сохранить</strong> — он запомнится в вашем браузере.</div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">3</div>
-      <div class="step-body">Скопируйте ссылку с YouTube и вставьте её в поле. Выберите режим: <strong>видео</strong>, <strong>аудио</strong> или <strong>информация</strong>.</div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">4</div>
-      <div class="step-body">Нажмите <strong>СКАЧАТЬ</strong> — появятся прямые ссылки на все доступные качества. Нажмите нужное и скачайте файл.</div>
-    </div>
-  </div>
-
-  <footer>
-    SNAPTUBE &mdash; GITHUB PAGES &mdash; <a href="https://rapidapi.com/ytjar/api/yt-api" target="_blank">YT-API ON RAPIDAPI</a>
-  </footer>
-</div>
-
-<script>
-  const API_HOST = 'yt-api.p.rapidapi.com';
-  let currentMode = 'video';
-
-  window.addEventListener('DOMContentLoaded', () => {
-    const saved = localStorage.getItem('rapidapi_key');
-    if (saved) document.getElementById('apiKey').value = saved;
-    document.getElementById('urlInput').addEventListener('keydown', e => {
-      if (e.key === 'Enter') run();
-    });
-  });
-
-  function saveKey() {
-    const k = document.getElementById('apiKey').value.trim();
-    if (!k) { alert('Введите ключ!'); return; }
-    localStorage.setItem('rapidapi_key', k);
-    showStatus('success', '✅ Ключ сохранён в браузере');
-  }
-
-  function setMode(btn) {
-    document.querySelectorAll('.mode-tab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentMode = btn.dataset.mode;
-  }
-
-  async function pasteUrl() {
-    try {
-      const t = await navigator.clipboard.readText();
-      document.getElementById('urlInput').value = t;
-    } catch { document.getElementById('urlInput').focus(); }
-  }
-
-  function getKey() {
-    return (document.getElementById('apiKey').value || localStorage.getItem('rapidapi_key') || '').trim();
-  }
-
-  function extractVideoId(url) {
-    try {
-      const u = new URL(url);
-      if (u.hostname.includes('youtu.be')) return u.pathname.slice(1).split('?')[0];
-      if (u.hostname.includes('youtube.com')) {
-        if (u.searchParams.get('v')) return u.searchParams.get('v');
-        const m = u.pathname.match(/\/(shorts|embed|v)\/([A-Za-z0-9_-]{11})/);
-        if (m) return m[2];
-      }
-    } catch {}
-    const m = url.match(/[A-Za-z0-9_-]{11}/);
-    return m ? m[0] : null;
-  }
-
-  function showStatus(type, html) {
-    const el = document.getElementById('status');
-    const box = document.getElementById('statusBox');
-    el.style.display = 'block';
-    box.className = 'status-box ' + type;
-    box.innerHTML = html;
-  }
-
-  function formatBytes(bytes) {
-    if (!bytes) return '';
-    const mb = bytes / 1048576;
-    return mb > 1 ? mb.toFixed(1) + ' MB' : (bytes / 1024).toFixed(0) + ' KB';
-  }
-
-  function formatDuration(sec) {
-    const s = parseInt(sec);
-    const h = Math.floor(s / 3600);
-    const m = Math.floor((s % 3600) / 60);
-    const ss = s % 60;
-    if (h > 0) return `${h}:${String(m).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
-    return `${m}:${String(ss).padStart(2,'0')}`;
-  }
-
-  async function apiGet(path) {
-    const key = getKey();
-    const resp = await fetch(`https://${API_HOST}${path}`, {
-      headers: { 'X-RapidAPI-Key': key, 'X-RapidAPI-Host': API_HOST }
-    });
-    if (!resp.ok) {
-      const txt = await resp.text();
-      if (resp.status === 403 || resp.status === 401) throw new Error('Неверный API-ключ. Проверьте ключ и подписку на yt-api.');
-      throw new Error(`API ${resp.status}: ${txt.slice(0, 150)}`);
-    }
-    return resp.json();
-  }
-
-  async function run() {
-    const key = getKey();
-    if (!key) { showStatus('error', '⛔ Сначала введите и сохраните API-ключ RapidAPI!'); return; }
-
-    const url = document.getElementById('urlInput').value.trim();
-    if (!url) { showStatus('error', '⛔ Введите ссылку на видео YouTube'); return; }
-
-    const videoId = extractVideoId(url);
-    if (!videoId) { showStatus('error', '⛔ Не удалось распознать ссылку. Пример: https://youtube.com/watch?v=dQw4w9WgXcQ'); return; }
-
-    const btn = document.getElementById('goBtn');
-    btn.disabled = true;
-    document.getElementById('result').style.display = 'none';
-
-    try {
-      if (currentMode === 'info') {
-        showStatus('loading', '<span class="spin">⟳</span> Загрузка информации о видео...');
-        const data = await apiGet(`/video/info?id=${videoId}`);
-        renderInfo(data, videoId);
-        showStatus('success', '✅ Информация о видео получена');
-      } else {
-        showStatus('loading', '<span class="spin">⟳</span> Получение форматов видео...');
-        const data = await apiGet(`/dl?id=${videoId}`);
-        if (!data || data.status === 'ERROR') throw new Error(data?.errorMessage || 'Видео недоступно');
-        renderDownloads(data, videoId);
-      }
-    } catch (e) {
-      showStatus('error', '⛔ ' + e.message);
-    }
-
-    btn.disabled = false;
-  }
-
-  function setThumb(videoId, data) {
-    const thumbWrap = document.getElementById('thumbWrap');
-    const thumbUrl = data.thumbnail || `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-    thumbWrap.innerHTML = `
-      <img class="result-thumb" src="${thumbUrl}"
-        onerror="this.src='https://img.youtube.com/vi/${videoId}/hqdefault.jpg'" alt="">
-      <div class="play-overlay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>`;
-  }
-
-  function setMeta(data) {
-    document.getElementById('rTitle').textContent = data.title || 'Видео с YouTube';
-    const parts = [
-      data.lengthSeconds ? '⏱ ' + formatDuration(data.lengthSeconds) : '',
-      data.viewCount ? '👁 ' + Number(data.viewCount).toLocaleString('ru') : '',
-      data.author ? '👤 ' + data.author : '',
-    ].filter(Boolean);
-    document.getElementById('rMeta').textContent = parts.join('   ');
-  }
-
-  function renderDownloads(data, videoId) {
-    document.getElementById('result').style.display = 'block';
-    setThumb(videoId, data);
-    setMeta(data);
-
-    const dlList = document.getElementById('dlList');
-    dlList.innerHTML = '';
-    const formats = data.formats || [];
-
-    const combined = formats.filter(f => f.hasVideo && f.hasAudio)
-      .sort((a,b) => (parseInt(b.height)||0) - (parseInt(a.height)||0));
-    const videoOnly = formats.filter(f => f.hasVideo && !f.hasAudio)
-      .sort((a,b) => (parseInt(b.height)||0) - (parseInt(a.height)||0));
-    const audioOnly = formats.filter(f => f.hasAudio && !f.hasVideo)
-      .sort((a,b) => (parseInt(b.audioBitrate)||0) - (parseInt(a.audioBitrate)||0));
-
-    if (currentMode === 'video') {
-      if (combined.length) {
-        addSection(dlList, 'Видео + Аудио (готово к скачиванию)');
-        combined.slice(0,6).forEach(f => {
-          const ext = f.mimeType?.includes('webm') ? 'WEBM' : 'MP4';
-          addDlLink(dlList, f.url, getVideoLabel(f), ext, formatBytes(f.contentLength));
-        });
-      }
-      if (videoOnly.length) {
-        addSection(dlList, 'Только видео (без звука)');
-        videoOnly.slice(0,4).forEach(f => addDlLink(dlList, f.url, getVideoLabel(f), 'VIDEO', formatBytes(f.contentLength)));
-      }
-      if (!combined.length && !videoOnly.length) {
-        dlList.innerHTML = '<div style="padding:8px;color:#999;font-size:12px;">Форматы не найдены. Видео может быть недоступно.</div>';
-      }
-    }
-
-    if (currentMode === 'audio') {
-      if (audioOnly.length) {
-        addSection(dlList, 'Аудио форматы');
-        audioOnly.forEach(f => addDlLink(dlList, f.url, getAudioLabel(f), 'AUDIO', formatBytes(f.contentLength)));
-      } else {
-        addSection(dlList, 'Аудио (извлечь из видео)');
-        formats.filter(f=>f.hasAudio).sort((a,b)=>(b.audioBitrate||0)-(a.audioBitrate||0)).slice(0,3)
-          .forEach(f => addDlLink(dlList, f.url, getAudioLabel(f), 'AUDIO', ''));
-      }
-    }
-  }
-
-  function renderInfo(data, videoId) {
-    document.getElementById('result').style.display = 'block';
-    setThumb(videoId, data);
-    document.getElementById('rTitle').textContent = data.title || '—';
-    const parts = [
-      data.lengthSeconds ? '⏱ ' + formatDuration(data.lengthSeconds) : '',
-      data.viewCount ? '👁 ' + Number(data.viewCount).toLocaleString('ru') : '',
-      data.author ? '👤 ' + data.author : '',
-      data.publishDate ? '📅 ' + data.publishDate : '',
-    ].filter(Boolean);
-    document.getElementById('rMeta').textContent = parts.join('   ');
-    const dlList = document.getElementById('dlList');
-    dlList.innerHTML = data.description
-      ? `<div style="font-size:11px;line-height:1.9;color:#555;padding:4px 0;"><strong style="color:#111;">Описание:</strong><br>${data.description.slice(0,400)}${data.description.length>400?'…':''}</div>`
-      : '';
-  }
-
-  function addSection(container, label) {
-    const d = document.createElement('div');
-    d.className = 'dl-section-title';
-    d.textContent = label;
-    container.appendChild(d);
-  }
-
-  function addDlLink(container, url, label, chip, size) {
-    const a = document.createElement('a');
-    a.className = 'dl-item';
-    a.href = url || '#';
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.innerHTML = `
-      <div class="dl-left">
-        <span class="dl-chip">${chip}</span>
-        <span>${label}</span>
+      <div id="wm-share" class="xxs">
+        <a href="/web/20160521095833/http://web.archive.org/screenshot/http://www.rinapalenkova.ru/"
+           id="wm-screenshot"
+           title="screenshot">
+          <span class="wm-icon-screen-shot"></span>
+        </a>
+        <a href="#" id="wm-video" title="video">
+          <span class="iconochive-movies"></span>
+        </a>
+        <a id="wm-share-facebook" href="#" data-url="https://web.archive.org/web/20160521095833/http://www.rinapalenkova.ru:80/" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+        <a id="wm-share-twitter" href="#" data-url="https://web.archive.org/web/20160521095833/http://www.rinapalenkova.ru:80/" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
       </div>
-      <div style="font-size:10px;opacity:0.5;">${size || '↓ открыть'}</div>`;
-    container.appendChild(a);
-  }
+      <div style="padding-right:2px;text-align:right;white-space:nowrap;">
+        <a id="wm-expand" class="wm-btn wm-closed" href="#expand"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span class="xxs" style="font-size:80%;">About this capture</span></a>
+      </div>
+    </div>
+  </div>
+    <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+        <div id="wm-capinfo-notice" source="api"></div>
+                <div id="wm-capinfo-collected-by">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center;padding:2px 0;">COLLECTED BY</div>
+    <div style="padding:3px;position:relative" id="wm-collected-by-content">
+            <div style="display:inline-block;vertical-align:top;width:50%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/alexacrawls);"></span>
+		Organization: <a style="color:#33f;" href="https://archive.org/details/alexacrawls" target="_new"><span class="wm-title">Alexa Crawls</span></a>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  Starting in 1996, <a href="http://www.alexa.com/">Alexa Internet</a> has been donating their crawl data to the Internet Archive.  Flowing in every day, these data are added to the <a href="http://web.archive.org/">Wayback Machine</a> after an embargo period.
+	</div>
+	      </div>
+      <div style="display:inline-block;vertical-align:top;width:49%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/alexacrawls)"></span>
+		<div>Collection: <a style="color:#33f;" href="https://archive.org/details/alexacrawls" target="_new"><span class="wm-title">Alexa Crawls</span></a></div>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  Starting in 1996, <a href="http://www.alexa.com/">Alexa Internet</a> has been donating their crawl data to the Internet Archive.  Flowing in every day, these data are added to the <a href="http://web.archive.org/">Wayback Machine</a> after an embargo period.
+	</div>
+	      </div>
+    </div>
+    </div>
+    <div id="wm-capinfo-timestamps">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center;padding:2px 0;" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+    <div>
+      <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+      <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="https://web-static.archive.org/_static/images/loading.gif" alt="loading" /></div>
+    </div>
+    </div>
+  </div></div></div></div><div id="wm-ipp-print">The Wayback Machine - https://web.archive.org/web/20160521095833/http://www.rinapalenkova.ru:80/</div>
+<script type="text/javascript">//<![CDATA[
+__wm.bt(775,27,25,2,"web","http://www.rinapalenkova.ru/","20160521095833",1996,"https://web-static.archive.org/_static/",["https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3","https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv"], false);
+  __wm.rw(1);
+//]]></script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+ 
 
-  function getVideoLabel(f) {
-    const h = f.height ? f.height + 'p' : (f.qualityLabel || '');
-    const fps = (f.fps && f.fps > 30) ? ' ' + f.fps + 'fps' : '';
-    const codec = f.videoCodec ? ' (' + f.videoCodec.split('.')[0] + ')' : '';
-    return h + fps + codec || 'Видео';
-  }
+        <div class="tape"></div>
+        <div class="overshadow"></div>
 
-  function getAudioLabel(f) {
-    const br = f.audioBitrate ? f.audioBitrate + ' kbps' : '';
-    const codec = f.audioCodec || '';
-    return [br, codec].filter(Boolean).join(' — ') || 'Аудио';
-  }
-</script>
-</body>
-</html>
+        <div class="scroll-down">
+            <span>Н</span>
+            <span>а</span>
+            <span>ч</span>
+            <span>а</span>
+            <span>т</span>
+            <span>ь</span>
+            <span>&nbsp;</span>
+            <span>ч</span>
+            <span>и</span>
+            <span>т</span>
+            <span>а</span>
+            <span>т</span>
+            <span>ь</span>
+            <span><i class="fa fa-chevron-down"></i></span>
+        </div>
+
+        <section class="title">
+            <div class="title-content">
+                <div class="title-content-photo"><img src="/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_11-180x180.jpg"></div>
+                <div class="title-content-name">Рина Паленкова</div>
+                <div class="title-content-dates">Онлайн-мемориал памяти Ренаты Камболиной</div>
+            </div>
+        </section>
+
+        <section class="hello">
+            <div class="inner">
+                <p>Здравствуйте. Вы попали на сайт, посвященный памяти ныне почившей Ренаты Камболиной, в сети более известной как Рина Паленкова.
+                <p>Данный сайт создан с целью увековечить память о Ренате в интернет пространстве и является интерактивным онлайн-мемориалом.
+            </div>
+        </section>
+
+        <section class="main-gallery">
+            <div class="swiper-container gallery-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_01_Presuicidal_Selfie.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_01_Presuicidal_Selfie-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_02_Presuicidal_Selfie-Alt.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_02_Presuicidal_Selfie-Alt-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_02_Presuicidal_Selfie.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_02_Presuicidal_Selfie-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_03_Drum_Sticks.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_03_Drum_Sticks-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_04_Fork.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_04_Fork-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_05_Icicle.png" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_05_Icicle-180x180.png);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_06_Bottles.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_06_Bottles-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_07_Lying_Down.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_07_Lying_Down-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_08_Hikka_Alt.png" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_08_Hikka_Alt-180x180.png);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_08_Hikka.png" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_08_Hikka-180x180.png);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_09.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_09-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_10_Bart_Simpson.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_10_Bart_Simpson-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_11.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_11-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_12.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_12-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_13.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_13-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_14_Green_Jeans.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_14_Green_Jeans-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_15.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_15-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_16_Piercing_Selfie-2.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_16_Piercing_Selfie-2-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_17_Piercing_Selfie.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_17_Piercing_Selfie-180x180.jpg);"></a></div>
+<!--                     <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_18_Nya_Alt.jpg" style="background-image: url(i/Rina_18_Nya_Alt-180x180.jpg);"></a></div> -->
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_18_Nya.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_18_Nya-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_19_Nya-2.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_19_Nya-2-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_20_Nya-3.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_20_Nya-3-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_21_Bow_Tie_Selfie-2.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_21_Bow_Tie_Selfie-2-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_22_Bow_Tie_Selfie.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_22_Bow_Tie_Selfie-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_23_Black_Hair.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_23_Black_Hair-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_24_Blue_Hair.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_24_Blue_Hair-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_25_Skype_Userpic.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_25_Skype_Userpic-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_26_Suicide_Girl.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_26_Suicide_Girl-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_27_Fooling_Around.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_27_Fooling_Around-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_28_Webpunk.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_28_Webpunk-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_29_Bloody_Fingers.png" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_29_Bloody_Fingers-180x180.png);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_30_Bloody_Fingers-2.png" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_30_Bloody_Fingers-2-180x180.png);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_31_with_Some_Friend.png" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_31_with_Some_Friend-180x180.png);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_32_with_Some_Friend-2.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_32_with_Some_Friend-2-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_33_with_Some_Friend-3.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_33_with_Some_Friend-3-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_34_Vans_with_Some_Friend-4.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_34_Vans_with_Some_Friend-4-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_35_with_Some_Friends-1.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_35_with_Some_Friends-1-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_36_with_Some_Friends-2.png" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_36_with_Some_Friends-2-180x180.png);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_37_Inshallah_Selfie.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_37_Inshallah_Selfie-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_38_with_Alex_Suhov.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_38_with_Alex_Suhov-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_39_with_Viktoria_Epifantseva.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_39_with_Viktoria_Epifantseva-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_40_Skype.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_40_Skype-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_41_Skype-2.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_41_Skype-2-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_42_Collage.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_42_Collage-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_43_with_Band.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_43_with_Band-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_43_with_Unknown_Kun.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_43_with_Unknown_Kun-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_44.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_44-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_45.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_45-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_46_DESU.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_46_DESU-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_47_With_Some_Frieds-4.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_47_With_Some_Frieds-4-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_48.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_48-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_49.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_49-180x180.jpg);"></a></div>
+                    <div class="swiper-slide"><a rel="gallery_group" href="i/Rina_50.jpg" style="background-image: url(/web/20160521095833im_/http://www.rinapalenkova.ru/i/Rina_50-180x180.jpg);"></a></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="necrology">
+            <div class="inner">
+                <div class="necrology-content">
+                    <h2 class="necrology-title">Некролог</h2>
+                    <p>Рина Паленкова (настоящее имя — Рената Камболина) родилась 18 декабря 1998 года в Уссурийске, Россия. В 2015 году, получив аттестат об основном общем образовании школы №28, поступила в Дальневосточный технический колледж города Уссурийска на специальность «Компьютерные сети».
+                    <p>Во время обучения в школе и колледже посещала уссурийскую «Школу рок-музыки», в которой наряду со своими подругами, взявшими название «Needless» («Отверженные») в честь одноимённого аниме-сериала, осваивала искусство игры на ударных инструментах. Но, к сожалению, группе так и не суждено было появиться на сцене.
+                    <p><audio controls>
+                        <source src="/web/20160521095833im_/http://www.rinapalenkova.ru/audio/Needless-repa.ogg">
+                        <source src="/web/20160521095833im_/http://www.rinapalenkova.ru/audio/Needless-repa.mp3">
+                    </audio>
+                    <p>На фотографиях Рената предстаёт зрителю обычным жизнерадостным подростком, который любит «подурачиться» и проводить время в компании близких друзей. Однако внутренние переживания и напряжения, оставшиеся незамеченными окружающими, привели к трагедии: 23 ноября 2015 года, не дожив до своего семнадцатилетия всего один месяц, девушка прервала свою жизнь, совершив самоубийство. Случай широко обсуждался интернет-сообществом, породив феномен образа «Рины Паленковой», однако это уже не имело значения: Рената Камболина мертва. Светлая память.
+                </div>
+            </div>
+        </section>
+
+<!--         <section class="artifacts">
+            <div class="inner">
+                <h2 class="artifacts-title">Список вещей Рины</h2>
+                <div class="artifacts-list">
+                    <div class="artifacts-list-item">
+                        <div class="artifacts-list-item-photo">
+                            <img src="artifacts/ipod.jpg">
+                        </div>
+                        <div class="artifacts-list-item-title">iPod 4G, серебристый</div>
+                        <div class="artifacts-list-item-search">
+                            <a target="_blank" href="https://google.com/?q=apple+ipod+5g+silver+купить">Погуглить</a>
+                        </div>
+                    </div>
+                    <div class="artifacts-list-item">
+                        <div class="artifacts-list-item-photo">
+                            <img src="artifacts/smarttrack.jpg">
+                        </div>
+                        <div class="artifacts-list-item-title">Наушники SmartTrack Toxic</div>
+                        <div class="artifacts-list-item-search">
+                            <a target="_blank" href="https://google.com/?q=SmartTrack+Toxic+MK2+STE-7200+купить">Погуглить</a>
+                        </div>
+                    </div>
+                    <div class="artifacts-list-item">
+                        <div class="artifacts-list-item-photo">
+                            <img src="artifacts/eyeball-backpack.jpg">
+                        </div>
+                        <div class="artifacts-list-item-title">Рюкзак «Gruesome Eyeball Backpack»</div>
+                        <div class="artifacts-list-item-search">
+                            <a target="_blank" href="https://www.house-of-the-undead.co.uk/product_info.php/gruesome-eyeball-backpack-bag-front-pocket-and-adjustable-straps-gore-horror-p-610">Купить</a>
+                        </div>
+                    </div>
+                    <div class="artifacts-list-item">
+                        <div class="artifacts-list-item-photo">
+                            <img src="artifacts/sexpistols.jpg">
+                        </div>
+                        <div class="artifacts-list-item-title">Напульсник Sex Pistols</div>
+                        <div class="artifacts-list-item-search">
+                            <a target="_blank" href="http://rockspace-msk.ru/rock-atributika/napulsniki/sex-pistols-napulsnik.htm">Купить</a>
+                        </div>
+                    </div>
+                    <div class="artifacts-list-item">
+                        <div class="artifacts-list-item-photo">
+                            <img src="artifacts/maus.jpg">
+                        </div>
+                        <div class="artifacts-list-item-title">Тетрадь Minnie Mouse</div>
+                        <div class="artifacts-list-item-search">
+                            <a target="_blank" href="http://bumbel.net/goods/%D0%A2%D0%B5%D1%82%D1%80%D0%B0%D0%B4%D1%8C-Minnie-Mouse-Stylish-A4-%D0%BA%D0%BB%D0%B5%D1%82%D0%BA%D0%B0-96-%D0%BB%D0%B8%D1%81%D1%82%D0%BE%D0%B2">Купить</a>
+                        </div>
+                    </div>
+                    <div class="artifacts-list-item">
+                        <div class="artifacts-list-item-photo">
+                            <img src="artifacts/uroboros.jpg">
+                        </div>
+                        <div class="artifacts-list-item-title">Уроборос</div>
+                        <div class="artifacts-list-item-search">
+                            <a target="_blank" href="https://google.com/?q=TOTEM+Уроборос+купить">Погуглить</a>
+                        </div>
+                    </div>
+                    <div class="artifacts-list-item">
+                        <div class="artifacts-list-item-photo">
+                            <img src="artifacts/mapleseries.jpg">
+                        </div>
+                        <div class="artifacts-list-item-title">Барабанные палочки</div>
+                        <div class="artifacts-list-item-search">
+                            <a target="_blank" href="http://www.staggmusic.com/en/products/drums_percussion/sticks_mallets/drum_set/maple_series.html">Купить</a>
+                        </div>
+                    </div>
+                    <div class="artifacts-list-item">
+                        <div class="artifacts-list-item-photo">
+                            <img src="artifacts/wallpaper.jpg">
+                        </div>
+                        <div class="artifacts-list-item-title">Обои</div>
+                        <div class="artifacts-list-item-search">
+                            <a target="_blank" href="http://www.oboiland.ru/catalog/228/32034/">Купить</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+
+        <section class="music">
+            <div class="inner">
+                <h2 class="music-title">Музыка</h2>
+                <div class="music-text">
+                    <p>Музыка. Мы можем только строить догадки, но наверняка Рената придавала ей огромное значение. Даже в последние секунды жизни она не захотела расставаться с ней, а приняла неизбежное в наушниках с, будем уверены, играющей в них музыкой. 
+                    <p>К сожалению, узнать о вкусах человека и его предпочтениях в музыке не дано никому, кроме него самого, но мы можем попробовать предположить, что нравилось Рине. 
+                    <p>Здесь представлен трек-лист, составленный на основе тех композиций, которые сама Рина размещала на своей странице в социальной сети, а также отмечала лайками ("мне нравится") или делилась с другими людьми. 
+                    <p>Во избежание проблем с авторским правом, мы не можем поместить композиции в этом разделе. Но все они доступны для прослушивания в социальной сети «ВКонтакте» (vk.com). По мере поступления новой информации раздел будет пополняться.
+                </div>
+                <ul class="music-playlist">
+                    <li>†Мертвец69† - Разбитые мечты.mp3</li>
+                    <li>немногогрустный - Печаль.mp3</li>
+                    <li>A Skylit Drive - Wide Awake.mp3</li>
+                    <li>Alesana - It Was A Dark And Stormy Night.mp3</li>
+                    <li>Asking Alexandria - To Death Of Me.mp3</li>
+                    <li>Elliot Smith - Between The Bars.mp3</li>
+                    <li>heroinmom - lirika myagkogo pola.mp3</li>
+                    <li>Limitless - Lessons.mp3</li>
+                    <li>Сплин - Выхода нет.mp3</li>
+                    <li>Parkway Drive - Idols and Anchors.mp3</li>
+                    <li>Rammstein - Spieluhr.mp3</li>
+                    <li>The Neighbourhood - Afraid.mp3</li>
+                    <li>The Road To Milestone - Asylum.mp3</li>
+                    <li>The Wheels Of Sorrow - From Darkness To Light.mp3</li>
+                    <li>Thousand Foot Krutch - E For Extinction.mp3</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <section class="responses">
+            <div class="inner">
+                <h2 class="responses-title">Слова скорби и соболезнований</h2>
+                <div class="responses-quote"></div>
+                <div class="swiper-container responses-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">Хоть я тебя и не знал, но ты навсегда останешься в моем сердце. Покойся с миром.</div>
+                        <div class="swiper-slide">Прости безумие в нашей нормальности, мы — обречены, ты — свободна. Спи спокойно, няш.</div>
+                        <div class="swiper-slide">Моя жизнь никогда не будет прежней. Жаль, что это было достигнуто такой высокой ценой. Рина, прости нас.</div>
+                        <div class="swiper-slide">Земля тебе пухом, Риночка. Ты будешь жить в моем сердце вечно. Северодвинск скорбит.</div>
+                        <div class="swiper-slide">Спи спокойно, Рина! Пусть больше никто не потеряет себя от любви.</div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination responses-pagination"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="footer">
+            <div class="footer-dates">18.XII.1998&mdash;23.XI.2015</div>
+            <div class="footer-quote">ты не моя, я это знаю,<br>и ты моей не станешь никогда</div>
+            <div class="footer-contact">&copy; 2015 — <a href="https://web.archive.org/web/20160521095833/mailto:feedback@rinapalenkova.ru">feedback@rinapalenkova.ru</a></div>
+        </section>
+
+
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript">
+            (function (d, w, c) {
+                (w[c] = w[c] || []).push(function() {
+                    try {
+                        w.yaCounter34283290 = new Ya.Metrika({
+                            id:34283290,
+                            clickmap:true,
+                            trackLinks:true,
+                            accurateTrackBounce:true
+                        });
+                    } catch(e) { }
+                });
+
+                var n = d.getElementsByTagName("script")[0],
+                    s = d.createElement("script"),
+                    f = function () { n.parentNode.insertBefore(s, n); };
+                s.type = "text/javascript";
+                s.async = true;
+                s.src = "https://web.archive.org/web/20160521095833/https://mc.yandex.ru/metrika/watch.js";
+
+                if (w.opera == "[object Opera]") {
+                    d.addEventListener("DOMContentLoaded", f, false);
+                } else { f(); }
+            })(document, window, "yandex_metrika_callbacks");
+        </script>
+        <noscript><div><img src="https://web.archive.org/web/20160521095833im_/https://mc.yandex.ru/watch/34283290" style="position:absolute; left:-9999px;" alt=""/></div></noscript>
+        <!-- /Yandex.Metrika counter -->
+
+    </body>
+</html><!--
+     FILE ARCHIVED ON 09:58:33 May 21, 2016 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:34:25 Apr 09, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 0.768
+  exclusion.robots: 0.082
+  exclusion.robots.policy: 0.038
+  esindex: 0.011
+  cdx.remote: 10.911
+  LoadShardBlock: 85.531 (3)
+  PetaboxLoader3.datanode: 86.085 (4)
+  load_resource: 104.662
+  PetaboxLoader3.resolve: 45.237
+  nav: 0.247 (6)
+-->
