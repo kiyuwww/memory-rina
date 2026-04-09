@@ -70,6 +70,8 @@
     text-decoration: none;
   }
 
+  #hero .scroll-hint:hover { color: #666; }
+
   .arrow-down {
     width: 14px;
     height: 14px;
@@ -106,11 +108,11 @@
   }
 
   .obit-layout {
-    max-width: 1300px; /* Увеличил общую ширину, чтобы влезли большие фото */
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 40px;
     display: grid;
-    grid-template-columns: 1fr 1.5fr; /* Галерея теперь занимает больше места */
+    grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: start;
   }
@@ -132,41 +134,33 @@
     margin-bottom: 18px;
   }
 
-  /* --- АУДИОПЛЕЕР --- */
   .audio-player {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     background: #f0f0f0;
     border-radius: 4px;
-    padding: 12px 18px;
+    padding: 10px 14px;
     margin: 20px 0;
     font-family: sans-serif;
     font-size: 13px;
     color: #555;
   }
 
-  .play-btn { cursor: pointer; font-size: 18px; transition: color 0.2s; }
-  .play-btn:hover { color: #3a5fc8; }
-  .audio-bar { flex: 2; height: 4px; background: #ccc; border-radius: 2px; position: relative; cursor: pointer; }
+  .play-btn { cursor: pointer; font-size: 14px; }
+  .audio-bar { flex: 1; height: 4px; background: #ccc; border-radius: 2px; }
   .audio-progress { width: 0%; height: 100%; background: #3a5fc8; border-radius: 2px; }
-  
-  .volume-wrap { display: flex; align-items: center; gap: 8px; flex: 1; }
-  .volume-slider { width: 100%; cursor: pointer; accent-color: #3a5fc8; }
 
-  /* --- ФОТОСЕТКА --- */
   .photo-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 больших колонки */
-    gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
   }
 
   .photo-cell {
     aspect-ratio: 1;
-    background: #ddd;
+    background: #eee;
     overflow: hidden;
-    border-radius: 4px;
-    cursor: pointer;
   }
 
   .photo-cell img {
@@ -174,34 +168,101 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    filter: grayscale(100%) brightness(0.8);
-    transition: all 0.5s ease;
+    transition: transform 0.3s ease;
   }
 
-  .photo-cell:hover img {
-    filter: grayscale(0%) brightness(1);
+  .photo-cell img:hover {
     transform: scale(1.05);
   }
 
-  /* --- ПРОСМОТР ФОТО (MODAL) --- */
-  #modal {
-    position: fixed;
-    top:0; left:0; width:100%; height:100%;
-    background: rgba(0,0,0,0.95);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    cursor: pointer;
-  }
-  #modal img {
-    max-width: 90%;
-    max-height: 90%;
-    transition: transform 0.3s ease;
-    cursor: default;
+  #music {
+    background: #f0f0ee;
+    padding: 80px 0;
   }
 
-  /* --- СТИЛИ ПОДВАЛА (FINAL) --- */
+  .music-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: normal;
+    color: #222;
+    margin-bottom: 56px;
+  }
+
+  .music-layout {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .music-text p {
+    font-size: 14px;
+    line-height: 1.85;
+    color: #555;
+    margin-bottom: 16px;
+  }
+
+  .music-list { list-style: none; padding: 0; }
+
+  .music-list li {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: #444;
+    padding: 7px 0;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .music-list li::before {
+    content: '♪';
+    color: #999;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  #condolences {
+    background: #7a7a7a;
+    padding: 70px 40px;
+    text-align: center;
+  }
+
+  .condolences-title {
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 36px;
+  }
+
+  .slider-wrap { max-width: 560px; margin: 0 auto; }
+
+  .quote-icon {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; color: #555; margin: 0 auto 24px;
+    padding-top: 4px;
+  }
+
+  .slide-text {
+    font-size: 16px; font-style: italic; color: #eee;
+    line-height: 1.75; min-height: 72px;
+    transition: opacity 0.3s ease;
+  }
+
+  .dots { margin-top: 28px; display: flex; justify-content: center; gap: 8px; }
+
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.3); cursor: pointer; transition: background 0.3s;
+  }
+
+  .dot.active { background: rgba(255,255,255,0.9); }
+
   #final {
     background: #383838;
     height: 100vh;
@@ -209,12 +270,32 @@
     align-items: center; justify-content: center;
     position: relative;
   }
-  .final-dates { font-size: 28px; color: #fff; letter-spacing: 1px; }
-  footer { background: #222; padding: 24px 40px; text-align: center; font-size: 12px; color: #555; }
 
-  @media (max-width: 900px) {
-    .obit-layout { grid-template-columns: 1fr; }
-    .photo-grid { grid-template-columns: repeat(2, 1fr); }
+  .final-dates {
+    font-size: 28px; font-weight: normal; color: #fff; letter-spacing: 1px;
+  }
+
+  .final-poem {
+    position: absolute; bottom: 120px;
+    font-size: 13px; font-style: italic; color: #777;
+    text-align: center; line-height: 1.7;
+  }
+
+  footer {
+    background: #222;
+    padding: 24px 40px;
+    text-align: center;
+    font-size: 12px;
+    color: #555;
+    font-family: sans-serif;
+  }
+
+  @media (max-width: 640px) {
+    #about .columns { grid-template-columns: 1fr; gap: 32px; padding: 0 24px; }
+    .obit-layout, .music-layout { grid-template-columns: 1fr; padding: 0 24px; }
+    .photo-grid { grid-template-columns: repeat(3, 1fr); }
+    #hero h1 { font-size: 24px; }
+    #hero .avatar { width: 120px; height: 120px; }
   }
 </style>
 </head>
@@ -240,24 +321,16 @@
   <div class="obit-layout">
     <div class="obit-text">
       <h2 class="obit-title">Некролог</h2>
-      <p>Рина Паленкова (настоящее имя — Рената Камболина) родилась 18 декабря 1998 года в Уссурийске, Россия...</p>
-      
+      <p>Рина Паленкова (настоящее имя — Рената Камболина) родилась 18 декабря 1998 года в Уссурийске, Россия. В 2015 году, получив аттестат об основном общем образовании школы №28, поступила в Дальневосточный технический колледж города Уссурийска на специальность «Компьютерные сети».</p>
+      <p>Во время обучения в школе и колледже посещала уссурийскую «Школу рок-музыки», в которой наряду со своими подругами, взявшими название «Needless» («Отверженные») в честь одноимённого аниме-сериала, осваивала искусство игры на ударных инструментах. Но, к сожалению, группе так и не суждено было появиться на сцене.</p>
       <div class="audio-player">
-        <span class="play-btn" id="playBtn">▶</span>
-        <span id="currentTime">0:00</span>
-        <div class="audio-bar" id="progressBar">
-          <div class="audio-progress" id="progressLine"></div>
-        </div>
-        <div class="volume-wrap">
-          <span>🔈</span>
-          <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
-        </div>
+        <span class="play-btn">▶</span>
+        <span class="audio-time">0:00 / 0:53</span>
+        <div class="audio-bar"><div class="audio-progress"></div></div>
+        <span class="audio-note">🔊</span>
       </div>
-      <audio id="mainAudio" src="https://audio.com/exitlage/audio/needless/download"></audio>
-
-      <p>На фотографиях Рената предстаёт зрителю обычным подростком. Однако внутренние переживания привели к трагедии: 23 ноября 2015 года девушка прервала свою жизнь. Светлая память.</p>
+      <p>На фотографиях Рената предстаёт зрителю обычным жизнерадостным подростком, который любит «подурачиться» и проводить время в компании близких друзей. Однако внутренние переживания и напряжения, оставшиеся незамеченными окружающими, привели к трагедии: 23 ноября 2015 года, не дожив до своего семнадцатилетия всего один месяц, девушка прервала свою жизнь, совершив самоубийство. Случай широко обсуждался интернет-сообществом, породив феномен образа «Рины Паленковой», однако это уже не имело значения: Рената Камболина мертва. Светлая память.</p>
     </div>
-
     <div class="obit-gallery">
       <div class="photo-grid">
         <div class="photo-cell"><img src="https://i.imgur.com/7WQTEd3.jpeg" referrerpolicy="no-referrer"></div>
@@ -281,81 +354,87 @@
   </div>
 </section>
 
-<div id="modal">
-  <img id="modalImg" src="">
-</div>
-
-<section id="final">
-  <p class="final-dates">18.XII.1998 — 23.XI.2015</p>
+<section id="music">
+  <h2 class="music-title">Музыка</h2>
+  <div class="music-layout">
+    <div class="music-text">
+      <p>Музыка. Мы можем только строить догадки, но наверняка Рената придавала ей огромное значение. Даже в последние секунды жизни она не захотела расставаться с ней, а приняла неизбежное в наушниках с, будем уверены, играющей в них музыкой.</p>
+      <p>К сожалению, узнать о вкусах человека и его предпочтениях в музыке не дано никому, кроме него самого, но мы можем попробовать предположить, что нравилось Рине.</p>
+      <p>Здесь представлен трек-лист, составленный на основе тех композиций, которые сама Рина размещала на своей странице в социальной сети, а также отмечала лайками («мне нравится») или делилась с другими людьми.</p>
+      <p>Во избежание проблем с авторским правом, мы не можем поместить композиции в этом разделе. Но все они доступны для прослушивания в социальной сети «ВКонтакте» (vk.com). По мере поступления новой информации раздел будет пополняться.</p>
+    </div>
+    <ul class="music-list">
+      <li>†Мертвец69† — Разбитые мечты.mp3</li>
+      <li>немногогрустный — Печаль.mp3</li>
+      <li>A Skylit Drive — Wide Awake.mp3</li>
+      <li>Alesana — It Was A Dark And Stormy Night.mp3</li>
+      <li>Asking Alexandria — To Death Of Me.mp3</li>
+      <li>Elliot Smith — Between The Bars.mp3</li>
+      <li>heroinmom — lirika myagkogo pola.mp3</li>
+      <li>Limitless — Lessons.mp3</li>
+      <li>Сплин — Выхода нет.mp3</li>
+      <li>Parkway Drive — Idols and Anchors.mp3</li>
+      <li>Rammstein — Spieluhr.mp3</li>
+      <li>The Neighbourhood — Afraid.mp3</li>
+      <li>The Road To Milestone — Asylum.mp3</li>
+      <li>The Wheels Of Sorrow — From Darkness To Light.mp3</li>
+      <li>Thousand Foot Krutch — E For Extinction.mp3</li>
+    </ul>
+  </div>
 </section>
 
-<footer>&copy; Онлайн-мемориал</footer>
+<section id="condolences">
+  <h2 class="condolences-title">Слова скорби и соболезнований</h2>
+  <div class="slider-wrap">
+    <div class="quote-icon">&rdquo;</div>
+    <p class="slide-text" id="slideText"></p>
+    <div class="dots" id="dots"></div>
+  </div>
+</section>
+
+<section id="final">
+  <p class="final-dates">18.XII.1998—23.XI.2015</p>
+  <p class="final-poem">ты не моя, я это знаю,<br>и ты моей не станешь никогда</p>
+</section>
+
+<footer>
+  &copy; Онлайн-мемориал Ренаты Камболиной
+</footer>
 
 <script>
-  // --- ЛОГИКА АУДИО ---
-  const audio = document.getElementById('mainAudio');
-  const playBtn = document.getElementById('playBtn');
-  const progressLine = document.getElementById('progressLine');
-  const progressBar = document.getElementById('progressBar');
-  const volumeSlider = document.getElementById('volumeSlider');
-  const timeText = document.getElementById('currentTime');
+  const quotes = [
+    "Хоть я тебя и не знал, но ты навсегда останешься в моем сердце. Покойся с миром.",
+    "Прости безумие в нашей нормальности, мы — обречены, ты — свободна. Спи спокойно, няш.",
+    "Моя жизнь никогда не будет прежней. Жаль, что это было достигнуто такой высокой ценой. Рина прости нас.",
+    "Земля тебе пухом, Риночка. Ты будешь жить в моем сердце вечно. Северодвинск скорбит.",
+    "Спи спокойно, Рина! Пусть больше никто не потеряет себя от любви."
+  ];
+  let current = 0;
+  const textEl = document.getElementById('slideText');
+  const dotsEl = document.getElementById('dots');
 
-  playBtn.onclick = () => {
-    if (audio.paused) {
-      audio.play();
-      playBtn.innerText = '⏸';
-    } else {
-      audio.pause();
-      playBtn.innerText = '▶';
-    }
-  };
+  function buildDots() {
+    dotsEl.innerHTML = '';
+    quotes.forEach((_, i) => {
+      const d = document.createElement('span');
+      d.className = 'dot' + (i === current ? ' active' : '');
+      d.onclick = () => goTo(i);
+      dotsEl.appendChild(d);
+    });
+  }
 
-  audio.ontimeupdate = () => {
-    const pct = (audio.currentTime / audio.duration) * 100;
-    progressLine.style.width = pct + '%';
-    
-    let mins = Math.floor(audio.currentTime / 60);
-    let secs = Math.floor(audio.currentTime % 60);
-    timeText.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-  };
+  function goTo(idx) {
+    current = idx;
+    textEl.style.opacity = '0';
+    setTimeout(() => {
+      textEl.textContent = quotes[current];
+      textEl.style.opacity = '1';
+      buildDots();
+    }, 300);
+  }
 
-  progressBar.onclick = (e) => {
-    const width = progressBar.clientWidth;
-    const clickX = e.offsetX;
-    audio.currentTime = (clickX / width) * audio.duration;
-  };
-
-  volumeSlider.oninput = (e) => {
-    audio.volume = e.target.value;
-  };
-
-  // --- ЛОГИКА ПРОСМОТРА ФОТО ---
-  const modal = document.getElementById('modal');
-  const modalImg = document.getElementById('modalImg');
-  let currentScale = 1;
-
-  document.querySelectorAll('.photo-cell img').forEach(img => {
-    img.onclick = () => {
-      modal.style.display = 'flex';
-      modalImg.src = img.src;
-      currentScale = 1;
-      modalImg.style.transform = `scale(${currentScale})`;
-      document.body.style.overflow = 'hidden';
-    };
-  });
-
-  modal.onclick = () => {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-  };
-
-  // Зум колесиком в модалке
-  modal.onwheel = (e) => {
-    e.preventDefault();
-    currentScale += e.deltaY * -0.001;
-    currentScale = Math.min(Math.max(1, currentScale), 3);
-    modalImg.style.transform = `scale(${currentScale})`;
-  };
+  goTo(0);
+  setInterval(() => goTo((current + 1) % quotes.length), 7000);
 </script>
 
 </body>
