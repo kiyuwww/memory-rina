@@ -134,34 +134,138 @@
     margin-bottom: 18px;
   }
 
-  .audio-player {
+  .audio-player-container {
+    background: #f1f3f4;
+    border-radius: 100px;
+    padding: 10px 20px;
+    margin: 20px 0;
+    max-width: 450px;
+    user-select: none;
     display: flex;
     align-items: center;
-    gap: 10px;
-    background: #f0f0f0;
-    border-radius: 4px;
-    padding: 10px 14px;
-    margin: 20px 0;
-    font-family: sans-serif;
-    font-size: 13px;
-    color: #555;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
   }
 
-  .play-btn { cursor: pointer; font-size: 14px; }
-  .audio-bar { flex: 1; height: 4px; background: #ccc; border-radius: 2px; }
-  .audio-progress { width: 0%; height: 100%; background: #3a5fc8; border-radius: 2px; }
+  .controls-left {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+  }
+
+  .play-btn {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .icon-play, .icon-pause {
+    width: 16px;
+    height: 16px;
+    fill: #1a1a1a;
+  }
+
+  #playBtn .icon-pause {
+    display: none;
+  }
+
+  .audio-time {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #555;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .audio-bar {
+    flex: 1;
+    height: 3px;
+    background: #ddd;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .audio-progress {
+    width: 0%;
+    height: 100%;
+    background: #1a1a1a;
+    border-radius: 3px;
+    position: absolute;
+    top: 0; left: 0;
+    transition: width 0.1s linear;
+  }
+
+  .audio-bar:after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    position: absolute;
+    top: -3px;
+    left: var(--after-left, 0%);
+    transform: translateX(-5px);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .audio-bar:hover:after {
+    opacity: 1;
+  }
+
+  .volume-controls-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    background: #e1e3e4;
+    border-radius: 50px;
+    padding: 8px 12px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    height: 36px;
+  }
+
+  .volume-slider-container {
+    width: 0;
+    overflow: hidden;
+    transition: width 0.3s ease-out;
+    display: flex;
+    align-items: center;
+  }
+
+  .volume-controls-wrapper:hover .volume-slider-container {
+    width: 80px;
+  }
+
+  .volume-slider {
+    width: 70px;
+    cursor: pointer;
+    accent-color: #1a1a1a;
+  }
+
+  .volume-icon {
+    width: 16px;
+    height: 16px;
+    fill: #1a1a1a;
+    margin-left: auto;
+  }
 
   .photo-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 8px; /* Немного увеличим gap */
+    gap: 8px;
   }
 
   .photo-cell {
     aspect-ratio: 1;
     background: #eee;
     overflow: hidden;
-    cursor: pointer; /* Добавим курсор pointer для указания кликабельности */
+    cursor: pointer;
   }
 
   .photo-cell img {
@@ -169,36 +273,30 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.3s ease, filter 0.3s ease; /* Добавим filter в transition */
-    filter: grayscale(100%); /* Изначально серые */
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: grayscale(100%);
   }
 
   .photo-cell img:hover {
     transform: scale(1.05);
-    filter: grayscale(0%); /* Исходный цвет при наведении */
+    filter: grayscale(0%);
   }
 
-  /* Стили для модального окна */
   .modal {
     display: none;
     position: fixed;
     z-index: 1000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    overflow: auto;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
   }
 
   .modal-content {
-    display: block;
-    margin: auto;
-    max-width: 80%;
-    max-height: 80%;
-    transform: translateY(-50%);
-    top: 50%;
-    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
   }
 
   #music {
@@ -322,6 +420,10 @@
     .photo-grid { grid-template-columns: repeat(3, 1fr); }
     #hero h1 { font-size: 24px; }
     #hero .avatar { width: 120px; height: 120px; }
+    .audio-player-container { flex-wrap: wrap; border-radius: 15px; padding: 15px; }
+    .controls-left { width: 100%; justify-content: center; margin: 0 0 10px; }
+    .audio-bar { order: 2; width: 100%; margin: 10px 0; }
+    .volume-controls-wrapper { order: 3; margin: 10px 0 0 auto;}
   }
 </style>
 </head>
@@ -347,15 +449,34 @@
   <div class="obit-layout">
     <div class="obit-text">
       <h2 class="obit-title">Некролог</h2>
-      <p>Рина Паленкова (настоящее имя — Рената Камболина) родилась 18 декабря 1998 года в Уссурийске, Россия. В 2015 году, получив аттестат об основном общем образовании школы №28, поступила в Дальневосточный технический колледж города Уссурийска на специальность «Компьютерные сети».</p>
-      <p>Во время обучения в школе и колледже посещала уссурийскую «Школу рок-музыки», в которой наряду со своими подругами, взявшими название «Needless» («Отверженные») в честь одноимённого аниме-сериала, осваивала искусство игры на ударных инструментах. Но, к сожалению, группе так и не суждено было появиться на сцене.</p>
-      <div class="audio-player">
-        <span class="play-btn">▶</span>
-        <span class="audio-time">0:00 / 0:53</span>
-        <div class="audio-bar"><div class="audio-progress"></div></div>
-        <span class="audio-note">🔊</span>
+      <p>Рина Паленкова (настоящее имя — Рената Камболина) родилась 18 декабря 1998 года в Уссурийске, Россия. В 2015 году поступила в Дальневосточный технический колледж на специальность «Компьютерные сети».</p>
+      <p>Во время обучения посещала уссурийскую «Школу рок-музыки», в которой осваивала искусство игры на ударных инструментах.</p>
+      
+      <div class="audio-player-container">
+        <div class="controls-left">
+          <div class="play-btn" id="playBtn">
+            <svg class="icon-play" viewBox="0 0 16 16"><path d="M4 12v-8l6.5 4z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 16 16"><path d="M4 3h3v10H4zM9 3h3v10H9z"/></svg>
+          </div>
+          <span class="audio-time" id="audioTime">0:00 / 0:53</span>
+        </div>
+        
+        <div class="audio-bar" id="audioBar">
+          <div class="audio-progress" id="audioProgress"></div>
+        </div>
+        
+        <div class="volume-controls-wrapper">
+          <div class="volume-slider-container">
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="0.7">
+          </div>
+          <svg class="volume-icon" viewBox="0 0 16 16">
+            <path d="M7 3v10L3 9h-2V7h2z"/>
+            <path d="M9 3l1 1v8l-1 1M11.5 2L13 3v10l-1.5 1M14 1l2 2v10l-2 2" fill="none" stroke="#1a1a1a" stroke-width="1.2"/>
+          </svg>
+        </div>
       </div>
-      <p>На фотографиях Рената предстаёт зрителю обычным жизнерадостным подростком, который любит «подурачиться» и проводить время в компании близких друзей. Однако внутренние переживания и напряжения, оставшиеся незамеченными окружающими, привели к трагедии: 23 ноября 2015 года, не дожив до своего семнадцатилетия всего один месяц, девушка прервала свою жизнь, совершив самоубийство. Случай широко обсуждался интернет-сообществом, породив феномен образа «Рины Паленковой», однако это уже не имело значения: Рената Камболина мертва. Светлая память.</p>
+      
+      <p>На фотографиях Рената предстаёт зрителю обычным жизнерадостным подростком, который любит «подурачиться» и проводить время в компании близких друзей. Однако внутренние переживания привели к трагедии: 23 ноября 2015 года девушка прервала свою жизнь. Светлая память.</p>
     </div>
     <div class="obit-gallery">
       <div class="photo-grid">
@@ -388,26 +509,16 @@
   <h2 class="music-title">Музыка</h2>
   <div class="music-layout">
     <div class="music-text">
-      <p>Музыка. Мы можем только строить догадки, но наверняка Рената придавала ей огромное значение. Даже в последние секунды жизни она не захотела расставаться с ней, а приняла неизбежное в наушниках с, будем уверены, играющей в них музыкой.</p>
-      <p>К сожалению, узнать о вкусах человека и его предпочтениях в музыке не дано никому, кроме него самого, но мы можем попробовать предположить, что нравилось Рине.</p>
-      <p>Здесь представлен трек-лист, составленный на основе тех композиций, которые сама Рина размещала на своей странице в социальной сети, а также отмечала лайками («мне нравится») или делилась с другими людьми.</p>
-      <p>Во избежание проблем с авторским правом, мы не можем поместить композиции в этом разделе. Но все они доступны для прослушивания в социальной сети «ВКонтакте» (vk.com). По мере поступления новой информации раздел будет пополняться.</p>
+      <p>Здесь представлен трек-лист, составленный на основе тех композиций, которые сама Рина размещала на своей странице в социальной сети.</p>
     </div>
     <ul class="music-list">
       <li>†Мертвец69† — Разбитые мечты.mp3</li>
       <li>немногогрустный — Печаль.mp3</li>
       <li>A Skylit Drive — Wide Awake.mp3</li>
-      <li>Alesana — It Was A Dark And Stormy Night.mp3</li>
-      <li>Asking Alexandria — To Death Of Me.mp3</li>
       <li>Elliot Smith — Between The Bars.mp3</li>
-      <li>heroinmom — lirika myagkogo pola.mp3</li>
       <li>Limitless — Lessons.mp3</li>
       <li>Сплин — Выхода нет.mp3</li>
-      <li>Parkway Drive — Idols and Anchors.mp3</li>
-      <li>Rammstein — Spieluhr.mp3</li>
       <li>The Neighbourhood — Afraid.mp3</li>
-      <li>The Road To Milestone — Asylum.mp3</li>
-      <li>The Wheels Of Sorrow — From Darkness To Light.mp3</li>
       <li>Thousand Foot Krutch — E For Extinction.mp3</li>
     </ul>
   </div>
@@ -432,6 +543,63 @@
 </footer>
 
 <script>
+  const audio = new Audio('https://archive.org/download/needless_202604/Needless.mp3');
+  const playBtn = document.getElementById('playBtn');
+  const iconPlay = playBtn.querySelector('.icon-play');
+  const iconPause = playBtn.querySelector('.icon-pause');
+  const audioTime = document.getElementById('audioTime');
+  const audioProgress = document.getElementById('audioProgress');
+  const audioBar = document.getElementById('audioBar');
+  const volumeSlider = document.getElementById('volumeSlider');
+
+  audio.volume = volumeSlider.value;
+
+  playBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      iconPlay.style.display = 'none';
+      iconPause.style.display = 'block';
+    } else {
+      audio.pause();
+      iconPlay.style.display = 'block';
+      iconPause.style.display = 'none';
+    }
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    const current = audio.currentTime;
+    const duration = audio.duration || 0;
+    const percent = (current / duration) * 100;
+    audioProgress.style.width = percent + '%';
+    audioBar.style.setProperty('--after-left', percent + '%');
+
+    const formatTime = (time) => {
+      const min = Math.floor(time / 60);
+      const sec = Math.floor(time % 60);
+      return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+    };
+    audioTime.textContent = `${formatTime(current)} / ${formatTime(duration)}`;
+  });
+
+  audioBar.addEventListener('click', (e) => {
+    const width = audioBar.clientWidth;
+    const clickX = e.offsetX;
+    const duration = audio.duration;
+    if (duration > 0) {
+        audio.currentTime = (clickX / width) * duration;
+    }
+  });
+
+  volumeSlider.addEventListener('input', (e) => {
+    audio.volume = e.target.value;
+  });
+
+  audio.addEventListener('ended', () => {
+    iconPlay.style.display = 'block';
+    iconPause.style.display = 'none';
+    audioProgress.style.width = '0%';
+  });
+
   const quotes = [
     "Хоть я тебя и не знал, но ты навсегда останешься в моем сердце. Покойся с миром.",
     "Прости безумие в нашей нормальности, мы — обречены, ты — свободна. Спи спокойно, няш.",
@@ -463,27 +631,22 @@
     }, 300);
   }
 
+  buildDots();
   goTo(0);
   setInterval(() => goTo((current + 1) % quotes.length), 7000);
 
-  // Скрипт для модального окна
   const modal = document.getElementById("myModal");
   const modalImg = document.getElementById("img01");
   const photoGrid = document.querySelector(".photo-grid");
 
   photoGrid.addEventListener("click", function(e) {
     if (e.target.tagName === "IMG") {
-      modal.style.display = "block";
+      modal.style.display = "flex";
       modalImg.src = e.target.src;
     }
   });
 
-  // Закрытие модального окна при клике вне изображения
-  modal.addEventListener("click", function(e) {
-    if (e.target !== modalImg) {
-      modal.style.display = "none";
-    }
-  });
+  modal.addEventListener("click", () => modal.style.display = "none");
 </script>
 
 </body>
